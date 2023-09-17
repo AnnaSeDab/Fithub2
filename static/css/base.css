@@ -72,12 +72,22 @@ body {
     color: black !important;
 }
 
-.bg-black {
-    background: #000 !important;
+.bg-grey {
+    background: #494949 !important;
 }
 
 .border-black {
     border: 1px solid black !important;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgb(224, 224, 223);
+    z-index: -1;
 }
 
 /* Media Queries */
