@@ -15,3 +15,14 @@ def merchandise(request):
 
     return render(request, 'merchandise/merchandise.html', context)
 
+
+def product_detail(request, product_id):
+    """A view to return the page with chosen product's details"""
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    context = {
+        'product': product,
+    }
+
+    return render(request, 'merchandise/product_detail.html', context)
