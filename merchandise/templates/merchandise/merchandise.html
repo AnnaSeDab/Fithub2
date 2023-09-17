@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center text-black mt-3">
+            <h2 class="logo-font">Merchandise</h2>
+            {% for c in current_categories %}
+            <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name}}</span>
+            {% endfor %}
+            <hr class="w-50 mb-1">
+        </div>
+    </div>
+</div>
+{% endblock %}
