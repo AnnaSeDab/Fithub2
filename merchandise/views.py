@@ -59,7 +59,7 @@ def merchandise(request):
 
 
 def product_detail(request, product_id):
-    """A view to return the page with chosen product details"""
+    """A view to return the page with chosen product's details"""
 
     product = get_object_or_404(Product, pk=product_id)
 
