@@ -62,8 +62,7 @@
                                 href="{% url 'merchandise' %}?category=activewear,workout_equipment">See all
                                 products</a> | </span>
                         {% endif %}
-                        {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term
-                            }}"</strong>{% endif %}
+                        {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                     </p>
                 </div>
             </div>
