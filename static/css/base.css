@@ -6,7 +6,7 @@ body {
     background: url('/media/heroimage.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
-    background-color: beige;
+    background-color: white;
     color: #494949;
     font-family: 'Josefin Sans', sans-serif;
 }
@@ -86,8 +86,17 @@ body {
     top: 0;
     left: 0;
     position: fixed;
-    background: rgb(224, 224, 223);
+    background: whitesmoke;
     z-index: -1;
+}
+
+.product-image {
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.image-container{
+    height: 70vh;
 }
 
 /* Media Queries */
