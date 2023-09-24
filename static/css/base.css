@@ -94,12 +94,6 @@ body {
     overflow: hidden;
 }
 
-.btt-link,
-.update-link,
-.remove-item {
-    cursor: pointer;
-}
-
 .image-container{
     height: 70vh;
 }
