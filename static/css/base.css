@@ -180,6 +180,30 @@ body {
     overflow-y: auto;
 }
 
+/* Fitness plans table */
+
+table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;
+}
+
+tr {
+    border: none;
+}
+
+td {
+    border-right: solid 1px grey;
+    border-left: solid 1px grey;
+    vertical-align: middle !important;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */

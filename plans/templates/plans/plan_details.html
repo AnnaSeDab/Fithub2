@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'plans/css/plans.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="image-container my-5 product-image">
+                {% if plan.image %}
+                <a href="{{ plan.image.url }}" target="_blank">
+                    <img class="card-img-top img-fluid" src="{{ plan.image.url }}" alt="{{ plan.friendly_name }}">
+                </a>
+                {% else %}
+                <a href="">
+                    <img class="card-img-top img-fluid" src="/media/Noimageavailable.webp"
+                        alt="{{ plan.friendly_name }}">
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="product-details-container text-black mb-5 mt-md-5">
+                <h1 class="mb-0">{{ plan.friendly_name }}</h1>
+                <p class="lead mb-0 text-left font-weight-bold">£{{ plan.price }}</p>
+                {% if plan.product.rating %}
+                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ plan.product.rating }} / 5</small>
+                {% else %}
+                <small class="text-muted">No Rating</small>
+                {% endif %}
+                <p class="mt-3">{{ plan.product.description }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-black text-center">
+            <hr>
+            <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase" value="Add to Bag">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-black">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>{{ plan.day_one.friendly_name }}</p>
+                            <a class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark"
+                                title="View on Youtube" href="{{ plan.day_one.video_url }}">TRY NOW!</a>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_two.friendly_name }}</p>
+                        </td>
+                        <br>
+                        <td>
+                            <p>{{ plan.day_three.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_four.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_five.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_six.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_seven.friendly_name }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<!--{% include 'merchandise/includes/quantity_input_script.html' %}-->
+{% endblock %}
