@@ -1,10 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from .models import DayPlan, FitnessPlan, PlanCategory
+from merchandise.models import Product, Category
 
 
-def profile(request):
+def plans(request):
     """ Display Fitness plans. """
 
-    template = 'plans/plans.html'
-    context = {}
+    plans = FitnessPlan.objects.all()
+    categories = PlanCategory.objects.all()
 
-    return render(request, template, context)
+    context = {
+        'plans': plans,
+        'categories': categories,
+    }
+
+    return render(request, 'plans/plans.html', context)
