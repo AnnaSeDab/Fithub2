@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -8,7 +7,6 @@
     </div>
 </div>
 {% endblock %}
-
 {% block content %}
 <div class="overlay"></div>
 <div class="container-fluid">
@@ -68,7 +66,7 @@
                         <td>
                             <p>{{ plan.day_one.friendly_name }}</p>
                             <a class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark"
-                                title="View on Youtube" href="{{ plan.day_one.video_url }}">TRY NOW!</a>
+                                title="View on Youtube" href="{% url 'day' plan.id plan.day_one.id %}">TRY NOW!</a>
                         </td>
                         <td>
                             <p>{{ plan.day_two.friendly_name }}</p>
@@ -93,31 +91,82 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <p>{{ plan.day_one.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_two.friendly_name }}</p>
+                        </td>
+                        <br>
+                        <td>
+                            <p>{{ plan.day_three.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_four.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_five.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_six.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_seven.friendly_name }}</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <p>{{ plan.day_one.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_two.friendly_name }}</p>
+                        </td>
+                        <br>
+                        <td>
+                            <p>{{ plan.day_three.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_four.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_five.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_six.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_seven.friendly_name }}</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <p>{{ plan.day_one.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_two.friendly_name }}</p>
+                        </td>
+                        <br>
+                        <td>
+                            <p>{{ plan.day_three.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_four.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_five.friendly_name }}</p>
+                        </td>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_six.friendly_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ plan.day_seven.friendly_name }}</p>
+                        </td>
                     </tr>
                 </tbody>
             </table>
