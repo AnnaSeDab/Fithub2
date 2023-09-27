@@ -8,6 +8,7 @@ def bag_contents(request):
 
     bag_items = []
     total = 0
+    has_plan = False
     product_count = 0
     bag = request.session.get('bag', {})
 
@@ -21,6 +22,9 @@ def bag_contents(request):
                 'quantity': item_data,
                 'product': product,
             })
+            if product.is_plan == True:
+                has_plan = True
+
         else:
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
@@ -33,12 +37,17 @@ def bag_contents(request):
                     'size': size,
                 })
 
-    if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
-        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
-    else:
+    if has_plan == True:
         delivery = 0
         free_delivery_delta = 0
+    else:
+        if total < settings.FREE_DELIVERY_THRESHOLD:
+            delivery = total * \
+                Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+            free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+        else:
+            delivery = 0
+            free_delivery_delta = 0
 
     grand_total = delivery + total
 
