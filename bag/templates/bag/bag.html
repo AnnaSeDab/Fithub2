@@ -83,6 +83,9 @@
                             <a class="update-link btt-link text-info"><small>Update</small></a>
                             <a class="remove-item btt-link text-danger float-right" id="remove_{{ item.item_id }}"
                                 data-product_size="{{ item.size }}"><small>Remove</small></a>
+                                {% else %}
+                                <a class="remove-item text-danger" id="remove_{{ item.item_id }}"
+                                    data-product_size="{{ item.size }}"><small>Remove</small></a>
                         {% endif %}
                         </td>
                         <td class="py-3">
