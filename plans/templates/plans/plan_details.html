@@ -1,135 +1,113 @@
-{% extends "base.html" %}
-{% load static %}
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.contrib import messages
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'plans/css/plans.css' %}">
-{% endblock %}
+from merchandise.models import Product
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
+# Create your views here.
 
-{% block content %}
-<div class="overlay"></div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-            <div class="image-container my-5 product-image">
-                {% if plan.image %}
-                <a href="{{ plan.image.url }}" target="_blank">
-                    <img class="card-img-top img-fluid" src="{{ plan.image.url }}" alt="{{ plan.friendly_name }}">
-                </a>
-                {% else %}
-                <a href="">
-                    <img class="card-img-top img-fluid" src="/media/Noimageavailable.webp"
-                        alt="{{ plan.friendly_name }}">
-                </a>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="product-details-container text-black mb-5 mt-md-5">
-                <h1 class="mb-0">{{ plan.friendly_name }}</h1>
-                <p class="lead mb-0 text-left font-weight-bold">£{{ plan.product.price }}</p>
-                {% if plan.product.rating %}
-                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ plan.product.rating }} / 5</small>
-                {% else %}
-                <small class="text-muted">No Rating</small>
-                {% endif %}
-                <p class="mt-3">{{ plan.product.description }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 text-black text-center">
-            <hr>
-            <form class="form" action="{% url 'add_to_bag' plan.product.id %}" method="POST">
-                {% csrf_token %}
-                <div class="form-row">
-                     <div class="col-12">
-                        <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase" value="Add to Bag">
-                    </div>
-                    <div>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    </div>
-                    <div class="col-12">
-                        <input class="form-control qty_input" type="hidden" name="quantity" value="1" data-item_id="{{ plan.product.id }}" id="id_qty_{{ plan.product.id }}">  
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 text-black">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <p>{{ plan.day_one.friendly_name }}</p>
-                            <a class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark"
-                                title="View on Youtube" href="{{ plan.day_one.video_url }}">TRY NOW!</a>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_two.friendly_name }}</p>
-                        </td>
-                        <br>
-                        <td>
-                            <p>{{ plan.day_three.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_four.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_five.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_six.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_seven.friendly_name }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-{% endblock %}
 
-{% block postloadjs %}
-{{ block.super }}
-<!--{% include 'merchandise/includes/quantity_input_script.html' %}-->
-{% endblock %}
+def view_bag(request):
+    """A view to return the bag content page"""
+    return render(request, 'bag/bag.html')
+
+
+def adjust_bag(request, item_id):
+    """ Adjust a quantity of the specified product in the shopping bag """
+
+    product = get_object_or_404(Product, pk=item_id)
+    quantity = int(request.POST.get('quantity'))
+    size = None
+    if 'product_size' in request.POST:
+        size = request.POST['product_size']
+    bag = request.session.get('bag', {})
+
+    if size:
+        if quantity > 0:
+            bag[item_id]['items_by_size'][size] = quantity
+            messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+        else:
+            del bag[item_id]['items_by_size'][size]
+            if not bag[item_id]['items_by_size']:
+                bag.pop(item_id)
+            messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
+    else:
+        if quantity > 0:
+            bag[item_id] = quantity
+            messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+        else:
+            bag.pop(item_id)
+            messages.success(request, f'Removed {product.name} from your bag')
+
+    request.session['bag'] = bag
+    return redirect(reverse('view_bag'))
+
+
+def remove_from_bag(request, item_id):
+    """Remove the item from the shopping bag"""
+
+    try:
+        product = get_object_or_404(Product, pk=item_id)
+        size = None
+        if 'product_size' in request.POST:
+            size = request.POST['product_size']
+        bag = request.session.get('bag', {})
+
+        if size:
+            del bag[item_id]['items_by_size'][size]
+            if not bag[item_id]['items_by_size']:
+                bag.pop(item_id)
+            messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
+
+        else:
+            bag.pop(item_id)
+            messages.success(request, f'Removed {product.name} from your bag')
+
+
+        request.session['bag'] = bag
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
+        return HttpResponse(status=500)
+
+
+def add_to_bag(request, item_id):
+    """ Add a quantity of the specified product to the shopping bag """
+
+    product = get_object_or_404(Product, pk=item_id)
+    quantity = int(request.POST.get('quantity'))
+    redirect_url = request.POST.get('redirect_url')
+    size = None
+
+    if 'product_size' in request.POST:
+        size = request.POST['product_size']
+    bag = request.session.get('bag', {})
+
+    if product.is_plan == True:
+        if item_id in list(bag.keys()):
+            messages.warning(request, f'You cannot buy two Fitness Plans at the same time')
+        else:
+            bag[item_id] = quantity
+            messages.success(request, f'Added {product.name} to your bag')
+    else:
+        if size:
+            if item_id in list(bag.keys()):
+                if size in bag[item_id]['items_by_size'].keys():
+                    bag[item_id]['items_by_size'][size] += quantity
+                    messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+                else:
+                    bag[item_id]['items_by_size'][size] = quantity
+                    messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
+            else:
+                bag[item_id] = {'items_by_size': {size: quantity}}
+                messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
+        else:
+            if item_id in list(bag.keys()):
+                bag[item_id] += quantity
+                messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+            else:
+                bag[item_id] = quantity
+                messages.success(request, f'Added {product.name} to your bag')
+
+    request.session['bag'] = bag
+    return redirect(redirect_url)
