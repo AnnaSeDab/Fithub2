@@ -34,7 +34,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="product-details-container text-black mb-5 mt-md-5">
                 <h1 class="mb-0">{{ plan.friendly_name }}</h1>
-                <p class="lead mb-0 text-left font-weight-bold">£{{ plan.price }}</p>
+                <p class="lead mb-0 text-left font-weight-bold">£{{ plan.product.price }}</p>
                 {% if plan.product.rating %}
                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ plan.product.rating }} / 5</small>
                 {% else %}
@@ -57,7 +57,7 @@
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                     <div class="col-12">
-                        <input class="form-control qty_input" type="number" name="quantity" value="1" data-item_id="{{ plan.product.id }}" id="id_qty_{{ plan.product.id }}">  
+                        <input class="form-control qty_input" type="hidden" name="quantity" value="1" data-item_id="{{ plan.product.id }}" id="id_qty_{{ plan.product.id }}">  
                     </div>
                 </div>
             </form>
