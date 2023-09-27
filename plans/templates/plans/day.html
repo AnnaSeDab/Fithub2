@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center text-black">
+                <h1 class="mb-3">Today's workout:</h1>
+                <h2>{{ day.friendly_name }}</h2>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mt-3 text-black">{{ day.description }}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-black text-center mb-3">
+                <a class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark" href="{{ day.video_url }}"
+                    target="_blank">
+                    Click here to open video on a Youtube page
+                </a>
+            </div>
+            <div class="text-black text-center mb-1">
+                <button class="workout-complete btn mx-2 btn-grey rounded-0">!WORKOUT COMPLETE!</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-8 mx-auto">
+            {% if plan.image %}
+            <img class="card-img-top img-fluid" src="{{ plan.image.url }}" alt="{{ day.friendly_name }}">
+            {% else %}
+            <img class="card-img-top img-fluid" src="/media/fitness_plan_generic.webp" alt="{{ day.friendly_name }}">
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<!--{% include 'merchandise/includes/quantity_input_script.html' %}-->
+{% endblock %}
