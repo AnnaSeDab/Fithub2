@@ -1,0 +1,16 @@
+{% extends "profiles/profile.html" %}
+
+{% block profile_content %}
+<hr>
+<h2 class="text-center logo-font text-black mb-4"> Default Delivery Information </h2>
+<hr>
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+        <form class="mt-3" action="{% url 'profile' %}" method="POST" id="text-center profile-update-form"> {% csrf_token %} {{form|crispy }}
+            <div class="text-center">
+                <button class="btn btn-outline-black rounded-0 text-uppercase">Update Information</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

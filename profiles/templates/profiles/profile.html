@@ -16,11 +16,42 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <hr>
-            <h2 class="logo-font mb-4">My Profile</h2>
-            <hr>
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="d-flex flex-column align-items-sm-center px-3 mt-3 pt-2 text-black min-vh-100">
+                <a href="/" class="d-flex pb-3 mb-md-0 me-md-auto text-black text-center text-decoration-none">
+                    <h2 class="fs-5 d-none d-sm-inline">Your Profile</h2>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-center"
+                    id="menu">
+                    <li class="nav-item">
+                        <h3 class="ms-1 mb-3 d-none d-sm-inline">{{ profile.user }}</h3>
+                    </li>
+                    <li>
+                        <a href="{% url 'my_info' %}" class="nav-link text-black px-0 align-middle">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="ms-1 d-none d-sm-inline">My info</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'my_plan' %}" class="nav-link text-black px-0 align-middle">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span class="ms-1 d-none d-sm-inline">My fitness plan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'my_orders' %}" class="nav-link text-black px-0">
+                            <i class="fa-solid fa-box-open"></i>
+                            <span class="ms-1 d-none d-sm-inline">My orders</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col text-black py-3">
+            {% block profile_content %}
+            {% endblock %}
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
