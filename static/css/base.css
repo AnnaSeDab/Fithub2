@@ -204,6 +204,10 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+.shopping-bag-link {
+    color: #521036 !important;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
@@ -258,8 +262,8 @@ tr:nth-child(even) {
 
 .allauth-form-inner-content a {
     color: #521036;
-    /* text-info */
 }
+
 
 /* Media Queries */
 
