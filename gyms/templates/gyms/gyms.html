@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'plans/css/plans.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<!-- free delivery banner -->
+<div id="delivery-banner" class="row text-center">
+    <div class="col bg-black text-white">
+        <h4 class="logo-font my-1">Free delivery of our merchandise when you but any Fitness Plan!</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <hr>
+            <h2 class="logo-font mb-4">Our gyms</h2>
+            <hr>
+            <p>Weather you prefer to work out at home using our amazing Fitness plans or at the gym, we got you covered.
+                Use 'Fithub23' discount code when you sign up for a 5% discout on first three months' subscription.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+</div>
+{% endblock %}
