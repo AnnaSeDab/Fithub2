@@ -34,7 +34,8 @@
                 </a>
             </div>
             <div class="text-black text-center mb-1">
-                <button class="workout-complete btn mx-2 btn-grey rounded-0">!WORKOUT COMPLETE!</button>
+                <a class="btn btn-grey rounded-0 my-2" title="Complete workout"
+                    href="{% url 'complete' plan.id day.id %}">Workout Complete!</a>
             </div>
         </div>
     </div>

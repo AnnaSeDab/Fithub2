@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'plans/css/plans.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <hr>
+            <h1 class="text-black text-center logo-font my-5">Good job!</h1>
+            <hr>
+            <a href="{% url 'my_plan' %}" class="text-center btn btn-grey rounded-0 my-2">
+                <span class="ms-1 d-none d-sm-inline">Go back to your plan</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

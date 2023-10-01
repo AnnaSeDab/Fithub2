@@ -42,3 +42,20 @@ def day(request, plan_id, day_id):
     }
 
     return render(request, 'plans/day.html', context)
+
+
+def complete(request, plan_id, day_id):
+    """A view to return the page after finishing the workout """
+
+    plan = get_object_or_404(FitnessPlan, pk=plan_id)
+    day = get_object_or_404(DayPlan, pk=day_id)
+
+    print(day)
+    day.completed = True
+    day.save(update_fields=['completed'])
+
+    context = {
+        'day': day,
+    }
+
+    return render(request, 'plans/complete.html', context)
