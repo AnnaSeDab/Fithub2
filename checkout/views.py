@@ -10,6 +10,7 @@ from merchandise.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
+from plans.models import FitnessPlan
 
 import stripe
 import json
@@ -50,12 +51,13 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
         }
+
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
-            order.oryginal_bag = json.dumps(bag)
+            order.original_bag = json.dumps(bag)
             order.save()
             for item_id, item_data in bag.items():
                 try:
@@ -67,6 +69,9 @@ def checkout(request):
                             quantity=item_data,
                         )
                         order_line_item.save()
+                        if product.is_plan == True:
+                            product_id = product.id
+                            print(product_id)
                     else:
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
@@ -84,6 +89,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
+            # Save the info to the user's profile
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
@@ -92,8 +98,7 @@ def checkout(request):
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(
-                request, "There's nothing in your bag at the moment")
+            messages.error(request, "There's nothing in your bag at the moment")
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)
@@ -105,6 +110,7 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
+        # Attempt to prefill the form with any info the user maintains in their profile
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -150,6 +156,18 @@ def checkout_success(request, order_number):
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
+
+        # Add fitness plan to profile if it was created in contex
+        bag = request.session.get('bag', {})
+
+        for item_id, item_data in bag.items():
+            product = get_object_or_404(Product, pk=item_id)
+            if product.is_plan == True:
+                product_id = product.id
+                print(product_id)
+                chosen_plan = get_object_or_404(FitnessPlan, product=product_id)
+                profile.fitness_plan = chosen_plan
+                profile.save(update_fields=['fitness_plan'])
 
         # Save the user's info
         if save_info:

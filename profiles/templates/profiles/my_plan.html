@@ -5,6 +5,16 @@
 <hr>
 <h2 class="text-center logo-font text-black mb-4"> Your fitness plan </h2>
 <hr>
-<p class="text-black"></p>
+{% if profile.fitness_plan %}
+<p class="text-black text-center">{{ profile.fitness_plan.friendly_name }}</p>
+{% else %}
+<p class="text-black">You do not have your fitness plan picked yet.</p>
+<a href="{% url 'plans' %}" class="btn btn-grey rounded-0 my-2">
+    <span class="icon mr-2">
+        <i class="fa-solid fa-dumbbell"></i>
+    </span>
+    <span class="text-uppercase">Find a Fitness plan for you</span>
+</a>
+{% endif %}
 
 {% endblock %}
