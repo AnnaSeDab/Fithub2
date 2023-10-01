@@ -7,6 +7,221 @@
 <hr>
 {% if profile.fitness_plan %}
 <p class="text-black text-center">{{ profile.fitness_plan.friendly_name }}</p>
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4 mx-auto">
+        <div class="image-container my-5 product-image">
+            {% if profile.fitness_plan.image %}
+            <a href="{{ profile.fitness_plan.image.url }}" target="_blank">
+                <img class="card-img-top img-fluid" src="{{ profile.fitness_plan.image.url }}"
+                    alt="{{ profile.fitness_plan.friendly_name }}">
+            </a>
+            {% else %}
+            <a href="">
+                <img class="card-img-top img-fluid" src="/media/Noimageavailable.webp"
+                    alt="{{ profile.fitness_plan.friendly_name }}">
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_one.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+        <p>{{ profile.fitness_plan.day_two.friendly_name }}</p>
+        <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+            href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+        <p>{{ profile.fitness_plan.day_three.friendly_name }}</p>
+        <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+            href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+        <p>{{ profile.fitness_plan.day_four.friendly_name }}</p>
+        <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+            href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+        <p>{{ profile.fitness_plan.day_five.friendly_name }}</p>
+        <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+            href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+        <p>{{ profile.fitness_plan.day_six.friendly_name }}</p>
+        <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+            href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_seven.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_eight.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_nine.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_ten.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_eleven.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twelve.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_thirteen.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_fourteen.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_fifteen.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_sixteen.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_seventeen.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_eighteen.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_nineteen.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twenty.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentyone.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentytwo.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentythree.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentyfour.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentyfive.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentysix.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentyseven.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-3 col-lg-2">
+        <div class="card h-100 border-0">
+            <p>{{ profile.fitness_plan.day_twentyeight.friendly_name }}</p>
+            <a class="btn btn-grey rounded-0 my-2" title="View on Youtube"
+                href="{% url 'day' profile.fitness_plan.id profile.fitness_plan.day_one.id  %}">Workout!</a>
+        </div>
+    </div>
+</div>
 {% else %}
 <p class="text-black">You do not have your fitness plan picked yet.</p>
 <a href="{% url 'plans' %}" class="btn btn-grey rounded-0 my-2">
