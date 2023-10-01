@@ -5,4 +5,11 @@ from .models import Gym
 
 def gyms(request):
     """A view to return the gyms page"""
-    return render(request, 'gyms/gyms.html')
+
+    gyms = Gym.objects.all()
+
+    context = {
+        'gyms': gyms,
+    }
+
+    return render(request, 'gyms/gyms.html', context)
