@@ -1,0 +1,13 @@
+{% extends "profiles/profile.html" %}
+
+{% block profile_content %}
+<hr>
+<h2 class="text-center logo-font text-grey mb-2"> Manage Products</h2>
+<hr>
+<div class="">
+        <a class="logo-font font-weight-bold text-black mr-5" href="{% url 'add_product' %}">Add product</a>
+        <a class="logo-font font-weight-bold text-black mr-5" href="{% url 'add_plan' %}">Add Fitness Plan</a>
+        <a class="logo-font font-weight-bold text-black mr-5" href="">Add Fitness Day</a>
+</div>
+{% endblock %}
+

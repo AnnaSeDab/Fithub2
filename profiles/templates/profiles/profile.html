@@ -45,6 +45,14 @@
                             <span class="ms-1 d-none d-sm-inline">My orders</span>
                         </a>
                     </li>
+                    {% if request.user.is_superuser %}
+                    <li>
+                        <a href="{% url 'management' %}" class="nav-link text-black px-0">
+                            <i class="fa-solid fa-gears"></i>
+                            <span class="ms-1 d-none d-sm-inline">Management</span>
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

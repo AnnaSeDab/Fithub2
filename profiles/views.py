@@ -138,3 +138,10 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
+
+def management(request):
+
+    template = 'profiles/management.html'
+    
+    return render(request, template)
