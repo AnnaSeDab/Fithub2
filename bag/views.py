@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, HttpResponse, get_object
 from django.contrib import messages
 
 from merchandise.models import Product
+from profiles.models import UserProfile
 
 # Create your views here.
 
@@ -86,13 +87,24 @@ def add_to_bag(request, item_id):
         size = request.POST['product_size']
     bag = request.session.get('bag', {})
 
+    # Check if user logged in and does not have a fitness plan already
     if product.is_plan == True:
-        if item_id in list(bag.keys()):
-            messages.warning(
-                request, f'You cannot buy two Fitness Plans at the same time')
+        if request.user.is_authenticated:
+            profile = get_object_or_404(UserProfile, user=request.user)
+            if profile.fitness_plan:
+                messages.warning(
+                    request, f"You aready purchased a fitness plan. Please contact us at admin@emailaddress.com if you'd like to discuss changing your plan")
+            else:
+                if item_id in list(bag.keys()):
+                    messages.warning(
+                        request, f'You cannot buy two Fitness Plans at the same time')
+                else:
+                    bag[item_id] = quantity
+                    messages.success(
+                        request, f'Added {product.name} to your bag')
         else:
-            bag[item_id] = quantity
-            messages.success(request, f'Added {product.name} to your bag')
+            messages.warning(
+                request, f'You have to be logged in to purchase a fitness plan')
     else:
         if size:
             if item_id in list(bag.keys()):
