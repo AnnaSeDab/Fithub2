@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from datetime import timedelta, date
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -159,15 +160,18 @@ def checkout_success(request, order_number):
 
         # Add fitness plan to profile if it was created in contex
         bag = request.session.get('bag', {})
+        date_now = date.today()
 
         for item_id, item_data in bag.items():
             product = get_object_or_404(Product, pk=item_id)
+            # If fitness plan was bought update user profile and start day field
             if product.is_plan == True:
                 product_id = product.id
-                print(product_id)
                 chosen_plan = get_object_or_404(FitnessPlan, product=product_id)
                 profile.fitness_plan = chosen_plan
+                chosen_plan.start_day = date_now
                 profile.save(update_fields=['fitness_plan'])
+                chosen_plan.save(update_fields=['start_day'])
 
         # Save the user's info
         if save_info:
