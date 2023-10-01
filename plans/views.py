@@ -1,7 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import DayPlan, FitnessPlan, PlanCategory
 from merchandise.models import Product, Category
+
+from .forms import PlanForm
 
 
 def plans(request):
@@ -59,3 +63,29 @@ def complete(request, plan_id, day_id):
     }
 
     return render(request, 'plans/complete.html', context)
+
+
+@login_required
+def add_plan(request):
+    """ Add a new fitness plan to the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = PlanForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You have added new fitness plan!')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request, 'Your atempt to add a product failed. Please make sure the form is valid.')
+    else:
+        form = PlanForm()
+        
+    template = 'plans/add_plan.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
