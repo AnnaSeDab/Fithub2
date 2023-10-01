@@ -84,14 +84,20 @@
                                 </div>
                             </div>
                         </div>
+                        {% if request.user.is_superuser %}
+                        <div class="col-12">
+                            <a class="btn btn-outline-black text-uppercase rounded-0" href="{% url 'edit_product' product.id %}"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+                            <a class="btn btn-outline-black text-uppercase rounded-0" href="{% url 'delete_product' product.id %}"><i class="fa-solid fa-trash"></i> Delete</a>
+                        </div>
+                        {% endif %}
                         <div class="col{% if s %}-12 mt-2{% endif %}">
-                            <a href="{% url 'merchandise' %}" class="btn btn-outline-black rounded-0 mt-5">
+                            <a href="{% url 'merchandise' %}" class="btn btn-outline-black rounded-0">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
                                 <span class="text-uppercase">Keep Shopping</span>
                             </a>
-                            <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                            <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase" value="Add to Bag">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         {% endwith %}

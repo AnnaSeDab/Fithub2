@@ -84,7 +84,7 @@
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <p class="lead mb-0 text-left text-black font-weight-bold">£{{ product.price }}
                                     </p>
                                     {% if product.category %}
@@ -100,6 +100,13 @@
                                         5</small>
                                     {% else %}
                                     <small class="text-muted">No Rating</small>
+                                    {% endif %}
+                                </div>
+                                <div class="col-6 text-center">
+                                    {% if request.user.is_superuser %}
+                                    <a class="btn btn-outline-black rounded-0 text-uppercase mb-1" href="{% url 'edit_product' product.id %}"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+                                    <br>
+                                    <a class="btn btn-outline-black rounded-0 text-uppercase" href="{% url 'delete_product' product.id %}"><i class="fa-solid fa-trash"></i> Delete</a>
                                     {% endif %}
                                 </div>
                             </div>
