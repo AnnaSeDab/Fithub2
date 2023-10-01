@@ -1,0 +1,25 @@
+Hi {{ order.full_name }}!
+
+
+Thank you for placing the order.
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+Order Total: ${{ order.order_total }}
+Delivery: ${{ order.delivery_cost }}
+Grand Total: ${{ order.grand_total }}
+
+Your order will be shipped to 
+{{ order.street_address1 }} 
+{{ order.street_address2 }} 
+{{ order.town_or_city }}
+{{ order.postcode }}
+{{ order.country }}
+
+If we need to contact you we will do so using the phone number you provided: {{ order.phone_number }}.
+
+If you have any questions, feel free to contact us at {{ contact_email }} and one of or team members will get back to you shortly. 
+
+All the best,
+Fithub Team
