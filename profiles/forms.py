@@ -1,6 +1,6 @@
 from django import forms
 from .models import UserProfile
-
+from plans.models import DayPlan, PlanCategory, FitnessPlan
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -32,3 +32,32 @@ class UserProfileForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
+
+
+class PlanForm(forms.ModelForm):
+
+    class Meta:
+        model = FitnessPlan
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        plancategories = PlanCategory.objects.all()
+        dayplan = DayPlan.objects.all()
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class DayForm(forms.ModelForm):
+
+    class Meta:
+        model = DayPlan
+        fields = ('name', 'friendly_name', 'description',
+            'video_url', 'is_rest')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'

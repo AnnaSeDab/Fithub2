@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from plans.models import DayPlan, FitnessPlan, PlanCategory
 from .models import UserProfile
 from .forms import UserProfileForm
+from .forms import PlanForm, DayForm
 
 from checkout.models import Order
 
@@ -139,9 +141,61 @@ def order_history(request, order_number):
 
     return render(request, template, context)
 
-
+@login_required
 def management(request):
 
     template = 'profiles/management.html'
     
     return render(request, template)
+
+
+@login_required
+def add_plan(request):
+    """ Add a new fitness plan to the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = PlanForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You have added new fitness plan!')
+            return redirect(reverse('add_plan'))
+        else:
+            messages.error(request, 'Your atempt to add a fitness plan failed. Please make sure the form is valid.')
+    else:
+        form = PlanForm()
+        
+    template = 'profiles/add_plan.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_day(request):
+    """ Add a new fitness day plan to the database """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = DayForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You have added new day plan!')
+            return redirect(reverse('add_day'))
+        else:
+            messages.error(request, 'Your atempt to add a day plan failed. Please make sure the form is valid.')
+    else:
+        form = DayForm()
+        
+    template = 'profiles/add_day.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

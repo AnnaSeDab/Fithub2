@@ -5,7 +5,6 @@ from django.contrib import messages
 from .models import DayPlan, FitnessPlan, PlanCategory
 from merchandise.models import Product, Category
 
-from .forms import PlanForm, DayForm
 
 
 def plans(request):
@@ -63,55 +62,3 @@ def complete(request, plan_id, day_id):
     }
 
     return render(request, 'plans/complete.html', context)
-
-
-@login_required
-def add_plan(request):
-    """ Add a new fitness plan to the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
-
-    if request.method == 'POST':
-        form = PlanForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'You have added new fitness plan!')
-            return redirect(reverse('add_plan'))
-        else:
-            messages.error(request, 'Your atempt to add a fitness plan failed. Please make sure the form is valid.')
-    else:
-        form = PlanForm()
-        
-    template = 'plans/add_plan.html'
-    context = {
-        'form': form,
-    }
-
-    return render(request, template, context)
-
-
-@login_required
-def add_day(request):
-    """ Add a new fitness day plan to the database """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
-
-    if request.method == 'POST':
-        form = DayForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'You have added new day plan!')
-            return redirect(reverse('add_day'))
-        else:
-            messages.error(request, 'Your atempt to add a day plan failed. Please make sure the form is valid.')
-    else:
-        form = DayForm()
-        
-    template = 'plans/add_day.html'
-    context = {
-        'form': form,
-    }
-
-    return render(request, template, context)
