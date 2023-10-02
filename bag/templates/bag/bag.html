@@ -39,9 +39,9 @@
                     {% for item in bag_items %}
                     <tr>
                         <td class="p-3 w-25">
-                            {% if product.image %}
-                            <a href="{{ product.image.url }}" target="_blank">
-                                <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            {% if item.product.image %}
+                            <a href="{{ item.product.image.url }}" target="_blank">
+                                <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ product.name }}">
                             </a>
                             {% else %}
                             <a href="">
