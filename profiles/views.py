@@ -212,7 +212,7 @@ def add_fitness_category(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'You have added new fitness plan category!')
-            return redirect(reverse('add_plan_category'))
+            return redirect(reverse('add_fitness_category'))
         else:
             messages.error(request, 'Your atempt to add a new fitness plan category failed. Please make sure the form is valid.')
     else:

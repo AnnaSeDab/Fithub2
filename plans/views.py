@@ -114,3 +114,45 @@ def delete_plan(request, plan_id):
     plan.delete()
     messages.success(request, f'Fitness plan {plan.name} has been deleted!')
     return redirect(reverse('plans'))
+
+@login_required
+def edit_category(request, category_id):
+    """ Edit a fitness plan categry """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(PlanCategory, pk=category_id)
+    if request.method == 'POST':
+        form = FitnessCategoryForm(request.POST, request.FILES, instance=category)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'You have succesfuly updated { category.name }!')
+            return redirect(reverse('plans'))
+        else:
+            messages.error(
+                request, 'Your atempt to edit a category failed. Please make sure the form is valid.')
+    else:
+        form = FitnessCategoryForm(instance=category)
+        messages.info(request, f'You are editing {category.name}')
+
+    template = 'plans/edit_category.html'
+    context = {
+        'form': form,
+        'category': category,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_category(request, category_id):
+    """ Delete a fitness category """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(PlanCategory, pk=category_id)
+    category.delete()
+    messages.success(request, f'Category {category.name} has been deleted!')
+    return redirect(reverse('plans'))
