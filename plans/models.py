@@ -26,6 +26,7 @@ class PlanCategory(models.Model):
         verbose_name_plural = 'Plan Categories'
 
     name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.name

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from plans.models import DayPlan, FitnessPlan, PlanCategory
 from .models import UserProfile
 from .forms import UserProfileForm
-from .forms import PlanForm, DayForm
+from .forms import PlanForm, DayForm, FitnessCategoryForm
 
 from checkout.models import Order
 
@@ -194,6 +194,31 @@ def add_day(request):
         form = DayForm()
         
     template = 'profiles/add_day.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def add_fitness_category(request):
+    """ Add a new fitness plan category to the database """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = FitnessCategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You have added new fitness plan category!')
+            return redirect(reverse('add_plan_category'))
+        else:
+            messages.error(request, 'Your atempt to add a new fitness plan category failed. Please make sure the form is valid.')
+    else:
+        form = FitnessCategoryForm()
+        
+    template = 'profiles/add_plan_category.html'
     context = {
         'form': form,
     }
