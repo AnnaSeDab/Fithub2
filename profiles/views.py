@@ -110,11 +110,6 @@ def my_plan(request):
     profile.fitness_plan.day_twentyseven.available_from = start_date + timedelta(days=26)
     profile.fitness_plan.day_twentyeight.available_from = start_date + timedelta(days=27)
 
-    print(date_now)
-    print(profile.fitness_plan.start_day)
-    print(profile.fitness_plan.day_one.available_from)
-    print(profile.fitness_plan.day_two.available_from)
-    print(profile.fitness_plan.day_three.available_from)
     template = 'profiles/my_plan.html'
     context = {
         'profile': profile,
