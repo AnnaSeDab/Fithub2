@@ -115,6 +115,7 @@ def delete_plan(request, plan_id):
     messages.success(request, f'Fitness plan {plan.name} has been deleted!')
     return redirect(reverse('plans'))
 
+
 @login_required
 def edit_category(request, category_id):
     """ Edit a fitness plan categry """
@@ -156,3 +157,61 @@ def delete_category(request, category_id):
     category.delete()
     messages.success(request, f'Category {category.name} has been deleted!')
     return redirect(reverse('plans'))
+
+
+@login_required
+def days(request):
+    """ Display Fitness days. """
+
+    days = DayPlan.objects.all()
+    form = PlanForm()
+
+    context = {
+        'days': days,
+        'form': form,
+    }
+
+    return render(request, 'plans/days.html', context)
+
+@login_required
+def edit_day(request, day_id):
+    """ Edit a fitness day plan categry """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    day = get_object_or_404(DayPlan, pk=day_id)
+    if request.method == 'POST':
+        form = DayForm(request.POST, request.FILES, instance=day)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'You have succesfuly updated { day.name }!')
+            return redirect(reverse('days'))
+        else:
+            messages.error(
+                request, 'Your atempt to edit a fitness day failed. Please make sure the form is valid.')
+    else:
+        form = DayForm(instance=day)
+        messages.info(request, f'You are editing {day.name}')
+
+    template = 'plans/edit_day.html'
+    context = {
+        'form': form,
+        'day': day,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_day(request, day_id):
+    """ Delete a fitness day """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    day = get_object_or_404(DayPlan, pk=day_id)
+    day.delete()
+    messages.success(request, f'Fitness day {day.name} has been deleted!')
+    return redirect(reverse('plans'))
+

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font text-center mb-4">Plans management</h2>
+                <hr>
+                <h4 class="text-center">Edit Fitness Day</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 mx-auto">
+                <form method="POST" action="{% url 'edit_day' day.id %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="text-right">
+                        <a class="btn btn-grey rounded-0" href="{% url 'days' %}">Cancel</a>
+                        <button class="btn btn-grey rounded-0" type="submit">Edit Fitness Day</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
