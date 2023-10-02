@@ -80,41 +80,43 @@ def my_plan(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     date_now = date.today()
-    start_date = profile.fitness_plan.start_day
-    profile.fitness_plan.day_one.available_from = start_date
-    profile.fitness_plan.day_two.available_from = start_date + timedelta(days=1)
-    profile.fitness_plan.day_three.available_from = start_date + timedelta(days=2)
-    profile.fitness_plan.day_four.available_from = start_date + timedelta(days=3)
-    profile.fitness_plan.day_five.available_from = start_date + timedelta(days=4)
-    profile.fitness_plan.day_six.available_from = start_date + timedelta(days=5)
-    profile.fitness_plan.day_seven.available_from = start_date + timedelta(days=6)
-    profile.fitness_plan.day_eight.available_from = start_date + timedelta(days=7)
-    profile.fitness_plan.day_nine.available_from = start_date + timedelta(days=8)
-    profile.fitness_plan.day_ten.available_from = start_date + timedelta(days=9)
-    profile.fitness_plan.day_eleven.available_from = start_date + timedelta(days=10)
-    profile.fitness_plan.day_twelve.available_from = start_date + timedelta(days=11)
-    profile.fitness_plan.day_thirteen.available_from = start_date + timedelta(days=12)
-    profile.fitness_plan.day_fourteen.available_from = start_date + timedelta(days=13)
-    profile.fitness_plan.day_fifteen.available_from = start_date + timedelta(days=14)
-    profile.fitness_plan.day_sixteen.available_from = start_date + timedelta(days=15)
-    profile.fitness_plan.day_seventeen.available_from = start_date + timedelta(days=16)
-    profile.fitness_plan.day_eighteen.available_from = start_date + timedelta(days=17)
-    profile.fitness_plan.day_nineteen.available_from = start_date + timedelta(days=18)
-    profile.fitness_plan.day_twenty.available_from = start_date + timedelta(days=19)
-    profile.fitness_plan.day_twentyone.available_from = start_date + timedelta(days=20)
-    profile.fitness_plan.day_twentytwo.available_from = start_date + timedelta(days=21)
-    profile.fitness_plan.day_twentythree.available_from = start_date + timedelta(days=22)
-    profile.fitness_plan.day_twentyfour.available_from = start_date + timedelta(days=23)
-    profile.fitness_plan.day_twentyfive.available_from = start_date + timedelta(days=24)
-    profile.fitness_plan.day_twentysix.available_from = start_date + timedelta(days=25)
-    profile.fitness_plan.day_twentyseven.available_from = start_date + timedelta(days=26)
-    profile.fitness_plan.day_twentyeight.available_from = start_date + timedelta(days=27)
 
-    template = 'profiles/my_plan.html'
-    context = {
-        'profile': profile,
-        'date_now': date_now,
-    }
+    if profile.fitness_plan: 
+        start_date = profile.fitness_plan.start_day
+        profile.fitness_plan.day_one.available_from = start_date
+        profile.fitness_plan.day_two.available_from = start_date + timedelta(days=1)
+        profile.fitness_plan.day_three.available_from = start_date + timedelta(days=2)
+        profile.fitness_plan.day_four.available_from = start_date + timedelta(days=3)
+        profile.fitness_plan.day_five.available_from = start_date + timedelta(days=4)
+        profile.fitness_plan.day_six.available_from = start_date + timedelta(days=5)
+        profile.fitness_plan.day_seven.available_from = start_date + timedelta(days=6)
+        profile.fitness_plan.day_eight.available_from = start_date + timedelta(days=7)
+        profile.fitness_plan.day_nine.available_from = start_date + timedelta(days=8)
+        profile.fitness_plan.day_ten.available_from = start_date + timedelta(days=9)
+        profile.fitness_plan.day_eleven.available_from = start_date + timedelta(days=10)
+        profile.fitness_plan.day_twelve.available_from = start_date + timedelta(days=11)
+        profile.fitness_plan.day_thirteen.available_from = start_date + timedelta(days=12)
+        profile.fitness_plan.day_fourteen.available_from = start_date + timedelta(days=13)
+        profile.fitness_plan.day_fifteen.available_from = start_date + timedelta(days=14)
+        profile.fitness_plan.day_sixteen.available_from = start_date + timedelta(days=15)
+        profile.fitness_plan.day_seventeen.available_from = start_date + timedelta(days=16)
+        profile.fitness_plan.day_eighteen.available_from = start_date + timedelta(days=17)
+        profile.fitness_plan.day_nineteen.available_from = start_date + timedelta(days=18)
+        profile.fitness_plan.day_twenty.available_from = start_date + timedelta(days=19)
+        profile.fitness_plan.day_twentyone.available_from = start_date + timedelta(days=20)
+        profile.fitness_plan.day_twentytwo.available_from = start_date + timedelta(days=21)
+        profile.fitness_plan.day_twentythree.available_from = start_date + timedelta(days=22)
+        profile.fitness_plan.day_twentyfour.available_from = start_date + timedelta(days=23)
+        profile.fitness_plan.day_twentyfive.available_from = start_date + timedelta(days=24)
+        profile.fitness_plan.day_twentysix.available_from = start_date + timedelta(days=25)
+        profile.fitness_plan.day_twentyseven.available_from = start_date + timedelta(days=26)
+        profile.fitness_plan.day_twentyeight.available_from = start_date + timedelta(days=27)
+
+        template = 'profiles/my_plan.html'
+        context = {
+            'profile': profile,
+            'date_now': date_now,
+        }
 
     return render(request, template, context)
 
