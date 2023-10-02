@@ -33,10 +33,17 @@
                     Click here to open video on a Youtube page
                 </a>
             </div>
+            {% if request.user.is_authenticated %}
             <div class="text-black text-center mb-1">
                 <a class="btn btn-grey rounded-0 my-2" title="Complete workout"
                     href="{% url 'complete' plan.id day.id %}">Workout Complete!</a>
             </div>
+            {% else %}
+            <div class="text-black text-center mb-1">
+                <a class="btn btn-grey rounded-0 my-2" title="Complete workout"
+                    href="{% url 'plan_details' plan.id %}">Workout Complete!</a>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="row">
