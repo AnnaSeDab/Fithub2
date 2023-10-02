@@ -24,11 +24,11 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col text-center">
             <hr>
-            <h2 class="logo-font mb-4">Your Fitness Plan</h2>
+            <h2 class="logo-font mb-4">Pick Your Fitness Plan</h2>
             {% for c in categories %}
-            <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.name }}</span>
+            <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
             {% endfor %}
             <hr>
         </div>
@@ -40,20 +40,26 @@
             <div class="row">
                 {% for plan in plans %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card h-100 border-0">
+                    <div class="card h-100 border-0 pb-2">
                         {% if plan.image %}
                         <a href="{% url 'plan_details' plan.id %}">
                             <img class="card-img-top img-fluid" src="{{ plan.image.url }}" alt="{{ plan.name }}">
                         </a>
                         {% else %}
                         <a href="">
-                            <img class="card-img-top img-fluid" src="/media/Noimageavailable.webp"
+                            <img class="card-img-top img-fluid" src="/media/noimage.png"
                                 alt="{{ plan.name }}">
                         </a>
                         {% endif %}
                         <div class="card-body pb-0">
                             <p class="mb-0 text-black"><strong>{{ plan.friendly_name }}</strong></p>
                             <p class="mb-0 text-black">Difficulty: {{ plan.difficulty }}</p>
+                        </div>
+                        <div class="text-center">
+                            {% if request.user.is_superuser %}
+                            <a class="btn btn-outline-black rounded-0 text-uppercase" href="{% url 'edit_plan' plan.id %}"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+                            <a class="btn btn-outline-black rounded-0 text-uppercase" href="{% url 'delete_plan' plan.id %}"><i class="fa-solid fa-trash"></i> Delete</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
