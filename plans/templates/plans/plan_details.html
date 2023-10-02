@@ -44,7 +44,7 @@
             <form class="form" action="{% url 'add_to_bag' plan.product.id %}" method="POST">
                 {% csrf_token %}
                 <div class="form-row">
-                    <div class="col-12">
+                    <div class="col-12 mb-3">
                         <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase" value="Add to Bag">
                     </div>
                     <div>
@@ -58,118 +58,148 @@
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 text-black">
-            <table class="table mb-5">
-                <tbody>
-                    <tr>
-                        <td>
-                            <p>{{ plan.day_one.friendly_name }}</p>
-                            <a class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark"
-                                title="View on Youtube" href="{% url 'day' plan.id plan.day_one.id %}">TRY NOW!</a>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_two.friendly_name }}</p>
-                        </td>
-                        <br>
-                        <td>
-                            <p>{{ plan.day_three.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_four.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_five.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_six.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_seven.friendly_name }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>{{ plan.day_eight.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_nine.friendly_name }}</p>
-                        </td>
-                        <br>
-                        <td>
-                            <p>{{ plan.day_ten.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_eleven.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twelve.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_thirteen.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_fourteen.friendly_name }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>{{ plan.day_fifteen.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_sixteen.friendly_name }}</p>
-                        </td>
-                        <br>
-                        <td>
-                            <p>{{ plan.day_seventeen.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_eighteen.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_nineteen.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twenty.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twentyone.friendly_name }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>{{ plan.day_twentytwo.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twentythree.friendly_name }}</p>
-                        </td>
-                        <br>
-                        <td>
-                            <p>{{ plan.day_twentyfour.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twentyfive.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twentysix.friendly_name }}</p>
-                        </td>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twentyseven.friendly_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ plan.day_twentyeight.friendly_name }}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="row justify-content-center text-center">
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_one.friendly_name }}</p>
+                <a class="btn btn-grey rounded-0 my-2"
+                title="View on Youtube" href="{% url 'day' plan.id plan.day_one.id %}">TRY NOW!</a>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_two.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_three.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_four.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_five.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_six.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_seven.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_eight.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_nine.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_ten.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_eleven.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twelve.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_thirteen.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_fourteen.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_fifteen.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_sixteen.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_seventeen.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_eighteen.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_nineteen.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twenty.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentyone.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentytwo.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentythree.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentyfour.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentyfive.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentysix.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentyseven.friendly_name }}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 col-md-3 col-lg-2 mb-1">
+            <div class="card h-100 border-0 p-2">
+                <p>{{ plan.day_twentyeight.friendly_name }}</p>
+            </div>
         </div>
     </div>
 </div>
