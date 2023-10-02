@@ -155,7 +155,7 @@ def add_plan(request):
         form = PlanForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You have added new fitness plan!')
+            messages.info(request, 'You have added new fitness plan!')
             return redirect(reverse('add_plan'))
         else:
             messages.error(request, 'Your atempt to add a fitness plan failed. Please make sure the form is valid.')
@@ -181,7 +181,7 @@ def add_day(request):
         form = DayForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You have added new day plan!')
+            messages.info(request, 'You have added new day plan!')
             return redirect(reverse('add_day'))
         else:
             messages.error(request, 'Your atempt to add a day plan failed. Please make sure the form is valid.')
@@ -206,7 +206,7 @@ def add_fitness_category(request):
         form = FitnessCategoryForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You have added new fitness plan category!')
+            messages.info(request, 'You have added new fitness plan category!')
             return redirect(reverse('add_fitness_category'))
         else:
             messages.error(request, 'Your atempt to add a new fitness plan category failed. Please make sure the form is valid.')

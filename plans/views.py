@@ -85,7 +85,7 @@ def edit_plan(request, plan_id):
         form = PlanForm(request.POST, request.FILES, instance=plan)
         if form.is_valid():
             form.save()
-            messages.success(request, f'You have succesfuly updated { plan.name }!')
+            messages.info(request, f'You have succesfuly updated { plan.name }!')
             return redirect(reverse('plan_details', args=[plan.id]))
         else:
             messages.error(
@@ -112,7 +112,7 @@ def delete_plan(request, plan_id):
 
     plan = get_object_or_404(FitnessPlan, pk=plan_id)
     plan.delete()
-    messages.success(request, f'Fitness plan {plan.name} has been deleted!')
+    messages.info(request, f'Fitness plan {plan.name} has been deleted!')
     return redirect(reverse('plans'))
 
 
@@ -128,7 +128,7 @@ def edit_category(request, category_id):
         form = FitnessCategoryForm(request.POST, request.FILES, instance=category)
         if form.is_valid():
             form.save()
-            messages.success(request, f'You have succesfuly updated { category.name }!')
+            messages.info(request, f'You have succesfuly updated { category.name }!')
             return redirect(reverse('plans'))
         else:
             messages.error(
@@ -155,7 +155,7 @@ def delete_category(request, category_id):
 
     category = get_object_or_404(PlanCategory, pk=category_id)
     category.delete()
-    messages.success(request, f'Category {category.name} has been deleted!')
+    messages.info(request, f'Category {category.name} has been deleted!')
     return redirect(reverse('plans'))
 
 
@@ -185,7 +185,7 @@ def edit_day(request, day_id):
         form = DayForm(request.POST, request.FILES, instance=day)
         if form.is_valid():
             form.save()
-            messages.success(request, f'You have succesfuly updated { day.name }!')
+            messages.info(request, f'You have succesfuly updated { day.name }!')
             return redirect(reverse('days'))
         else:
             messages.error(
@@ -212,6 +212,6 @@ def delete_day(request, day_id):
 
     day = get_object_or_404(DayPlan, pk=day_id)
     day.delete()
-    messages.success(request, f'Fitness day {day.name} has been deleted!')
+    messages.info(request, f'Fitness day {day.name} has been deleted!')
     return redirect(reverse('plans'))
 

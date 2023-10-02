@@ -84,7 +84,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You have added the product!')
+            messages.info(request, 'You have added the product!')
             return redirect(reverse('add_product'))
         else:
             messages.error(request, 'Your atempt to add a product failed. Please make sure the form is valid.')
@@ -111,7 +111,7 @@ def edit_product(request, product_id):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            messages.success(request, f'You have succesfuly updated { product.name }!')
+            messages.info(request, f'You have succesfuly updated { product.name }!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(
@@ -138,7 +138,7 @@ def delete_product(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
-    messages.success(request, f'Product {product.name} has been deleted!')
+    messages.info(request, f'Product {product.name} has been deleted!')
     return redirect(reverse('merchandise'))
 
 
@@ -154,7 +154,7 @@ def edit_category(request, category_id):
         form = CategoryForm(request.POST, request.FILES, instance=category)
         if form.is_valid():
             form.save()
-            messages.success(request, f'You have succesfuly updated { category.name }!')
+            messages.info(request, f'You have succesfuly updated { category.name }!')
             return redirect(reverse('merchandise'))
         else:
             messages.error(
@@ -181,5 +181,5 @@ def delete_category(request, category_id):
 
     category = get_object_or_404(Category, pk=category_id)
     category.delete()
-    messages.success(request, f'Category {category.name} has been deleted!')
+    messages.info(request, f'Category {category.name} has been deleted!')
     return redirect(reverse('merchandise'))
