@@ -20,10 +20,20 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center text-black mt-3">
+            <hr>
             <h2 class="logo-font">Merchandise</h2>
-            {% for c in current_categories %}
-            <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+            <hr>
+            {% if request.user.is_superuser %}
+            <div class="row justify-content-center">
+            {% for category in current_categories %}
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <span class="p-2 mt-2 text-black rounded-0 text-uppercase">{{ category.friendly_name }}</span>
+                    <a class="btn btn-outline-black rounded-0 text-uppercase mb-1" href="{% url 'edit_category' category.id %}"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-outline-black rounded-0 text-uppercase mb-1" href="{% url 'delete_category' category.id %}"><i class="fa-solid fa-trash"></i> Delete</a>
+                </div>
             {% endfor %}
+            </div>
+            {% endif %}
             <hr class="w-50 mb-1">
         </div>
     </div>

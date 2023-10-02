@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category
-from .forms import ProductForm
+from .forms import ProductForm, CategoryForm
 
 
 def merchandise(request):
@@ -139,4 +139,47 @@ def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, f'Product {product.name} has been deleted!')
+    return redirect(reverse('merchandise'))
+
+
+@login_required
+def edit_category(request, category_id):
+    """ Edit a merchandise categry in the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(Category, pk=category_id)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES, instance=category)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'You have succesfuly updated { category.name }!')
+            return redirect(reverse('merchandise'))
+        else:
+            messages.error(
+                request, 'Your atempt to edit a category failed. Please make sure the form is valid.')
+    else:
+        form = CategoryForm(instance=category)
+        messages.info(request, f'You are editing {category.name}')
+
+    template = 'merchandise/edit_category.html'
+    context = {
+        'form': form,
+        'category': category,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_category(request, category_id):
+    """ Delete a Category from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(Category, pk=category_id)
+    category.delete()
+    messages.success(request, f'Category {category.name} has been deleted!')
     return redirect(reverse('merchandise'))
