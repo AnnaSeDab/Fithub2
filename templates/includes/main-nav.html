@@ -25,5 +25,13 @@
                 Our Gyms
             </a>
         </li>
+        {% if request.user.is_superuser %}
+        <!-- afiliated gyms link -->
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'management' %}" id="gyms-link">
+               Product Management
+            </a>
+        </li>
+        {% endif %}
     </ul>
 </div>
