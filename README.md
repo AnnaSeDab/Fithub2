@@ -148,6 +148,9 @@ On top of all that logged in regular users can do, superusers can also perform c
 
 ### Information Architecture
 
+Schema:
+
+![Scheema](media/scheema.png)
 
 ## Technologies used
 
