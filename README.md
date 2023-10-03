@@ -152,7 +152,40 @@ Schema:
 
 ![Scheema](media/scheema.png)
 
-## Technologies used
+## Technologies and resources used
+
+- Languages:
+
+- HTML Used to create the structure of websites
+- CSS Used to add style to the website
+- JavaScript Used to activate dynamic elements
+- Python  Used to create and run the web application
+- Markdown for Readme file
+
+- Websites
+
+- Google Chrome Developer Tools - Used to test the responsiveness of the site
+- Firefox Developer Tools - Used to test the responsiveness of the site
+- Font Awesome - Used to source icons
+- Canva - Used to create wireframes and logo
+- Pixabay - Used to source images
+- Github - GitHub for versionn control for the development of application up to deployment
+- CodeAnywhere -An online IDE used to build and develop the website
+- Heroku- The cloud platform used to host the deployed site
+- Slack - Used during development and testing to find the solutions for the encountered problems
+- Stack Overflow - Used to search for the answers to encountered problems
+- Code Institute - Used to review concepts covered in preceding modules and walk-through projects
+- RandomKeyGen - Used to generate the Secret Key
+- W3C CSS Validation Service - Used to validate the CSS code
+- W3C HTML Validation Service - Used to validate the HTML code
+- ElephantSQL - PostgreSQL database hosting service
+- Youtube - links for videos for fitness workout
+- Bootstrap - Used to add various structures and styles to the website
+- Dave's Gym in Cardiff used as a gym link to demonstrate it works
+- drawsql.app - drawing schema
+- Django-allauth - authentication and authorisation
+- Djngo - web framework
+- Temp Mail - temporary email address
 
 
 ### Testing
