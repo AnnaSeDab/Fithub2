@@ -560,3 +560,14 @@ Select repository you want to fork
 Click on the **Fork** button located on the right top section of the page
 
 The copy of oryginal repository is made into your Github account
+
+
+#Credits
+
+This project is based on the Butique Ado - Code Institute walk through project. Additional apps and functionality was added to show my understanding of the concepts and ability to build code on my own. 
+
+Fellow students and Code Institute persons help and support was used via slack to solve problems encountered on the way.
+
+Stackoverflow was used to research problems. 
+
+Pictures, videos and their desription were taken from the pixabay and youtube and I do not have any commercial rights to them.
