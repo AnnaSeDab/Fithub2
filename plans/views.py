@@ -162,6 +162,9 @@ def delete_category(request, category_id):
 @login_required
 def days(request):
     """ Display Fitness days. """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     days = DayPlan.objects.all()
     form = PlanForm()
