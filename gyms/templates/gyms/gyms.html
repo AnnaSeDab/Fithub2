@@ -49,8 +49,10 @@
                             <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ gym.rating }} /5.00</small>
                             {% endif %}
                             <p class="text-black text-justify">{{ gym.description }}</p>
+                            {% if request.user.is_superuser %}
                             <a class="btn btn-outline-black rounded-0 text-uppercase mb-1" href="{% url 'edit_gym' gym.id %}"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
                             <a class="btn btn-outline-black rounded-0 text-uppercase mb-1" href="{% url 'delete_gym' gym.id %}"><i class="fa-solid fa-trash"></i> Delete</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
