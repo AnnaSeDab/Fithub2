@@ -34,12 +34,12 @@
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100 border-0">
                 {% if gym.image %}
-                <img class="card-img-top img-fluid" target="_blank" src="{{ gym.image.url }}" alt="{{ gym.name }}">
+                <img class="card-img-top img-fluid" src="{{ gym.image.url }}" alt="{{ gym.name }}">
                 {% else %}
                 <img class="card-img-top img-fluid" src="/media/noimage.png" alt="{{ gym.name }}">
                 {% endif %}
                 <div class="card-body pb-0">
-                    <a class="mb-0 lead text-black font-weight-bold" href="{{ gym.website_url }}">{{ gym.name }}</a>
+                    <a class="mb-0 lead text-black font-weight-bold" target="_blank" href="{{ gym.website_url }}">{{ gym.name }}</a>
                 </div>
                 <div class="card-footer bg-white pt-0 border-0 text-left">
                     <div class="row">
