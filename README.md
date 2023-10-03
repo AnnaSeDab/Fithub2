@@ -104,18 +104,21 @@ Thanks to the gray base the page is not too visually overhelming.
 | Registering with noncompliant password | Adequate feedback provided 'This password is too short. It must contain at least 8 characters. This password is too common. This password is entirely numeric.' | Option not avaiable | Option not avaiable | Yes |
 | Login | User needs to be registered to be able to log in | Option available when clicking on the peron icon in the header nav. | Option available when clicking on the peron icon in the header nav. | Yes but: Success message shows basked content. It could be fixed or left as it reminds the user that they have an unfinished shopping and might prompt them to check out. |
 | Log out | Option not avaiable | Option available when clicking on the peron icon in the header nav. Sign out confirmation then requested. Sign out successful. | Option available when clicking on the peron icon in the header nav. Sign out confirmation then requested. Sign out successful. | Yes |
-| Clicking on the Fithub logo | Takes user to the main page checked from fitness plans, merchandise and gym page. |  | <- The same checked also from profile and management page |   |
+| Clicking on the Fithub logo | Takes user to the main page checked from fitness plans, merchandise and gym page. |  | <- The same checked also from profile and management page | Yes |
 | Clicking shopping bag icon when it is empty | Shopping bag page with 'Your bag is empty.' message and keep shopping button which takes us to merchangise page |   | <- The same  | Yes |
 | Clicking shopping bag icon when something is in it | Shoping bag page with all the contents as should be |   |  <- The same  |   |
+|  |  |  |  |  |
 | Fitness plans | Page shows fitness plans |   | <- The same |   |
 | Clickin on a Fitness plan | Fitness plan page shows |   |  <- The same |   |
 | Clicking Try Now button | Day plan page shows |   | <- The same |   |
 | Clicking to open the youtube video | Opens the youtube video in a new tab |   | <- The same |   |
 | Clicking workout complete | Takes us back to the day plan page |   | <- The same |   |
 | Clicking add to bag when we don't have a plan yet | 'You have to be logged in to purchase a fitness plan' message shows | Adds fitness plan to the bag | <- The same |   |
-| Clicking add to bag when we do have a plan | N/A |  |  |   |
+| Clicking add to bag when we do have a plan | N/A | Not possible to add a plan | <- The same |  Yes |
+| Clicking add to bag when we do have a plan in a bag already | N/A | Not possible to add a plan | <- The same |  Yes |
 | Fitness plan in the bag | N/A | Only adjustment button showing is remove as we cannot have more than one fitness plan at the time | <- The same |  |
 | Remove fitness plan from the bag | N/A | Fitness plan gets removed. We go tho the merchandise page | <- The same | BUG ideally we would got to the plans page |
+|  |  |  |  |  |
 | All Merchandise | We go to the merchandise page |   | <- The same |   |
 | Workout equipment | We go to the merchandise page with Workout equipment showing |   | <- The same |   |
 | Activeware | We go to the merchandise page with Activeware showing |   | <- The same |   |
@@ -135,21 +138,27 @@ Thanks to the gray base the page is not too visually overhelming.
 | Click checkout button from the toast | Going to the shopping bag. It is not check out yet but this way we can confirm on a full screenthat all is ok with our order |   | <- The same |   |
 | Click product category on the bag page | We go back to the merchandise page with only relevant category showing |   | <- The same |   |
 | In bag adjust item quantity by buttons, arrows or input| Quantity adjusted |   |   |   |
-| In bag attempt to go below 0 | Quantity can go below if input manually. Item gets removed. Could be guarded but does not break the page |   |   | Could be better but does not break the page. Will be fixed in the future |
+| In bag attempt to go below 0 | Quantity can go below if input manually. Item gets removed. Could be guarded but does not break the page | <- The same  |  <- The same | Could be better but does not break the page. Will be fixed in the future |
 | In bag attempt to go over 99 | Quantity can go over if input manually | <- The same  |  <- The same | BUG, needs to be fixed |
 | In bag remove item | Item removed |  <- The same |  <- The same | Yes  |
 | Subtotal of items | Calculated acordingly and showing | <- The same | <- The same |  |
-| Grand total | Calculated accordingly. Shows how much more for the delivery. | <- The same and fitness plan in the bag takes delivery to zero | <- The same |  |
-| Toasts showing | When items added, adjusted or removed.toasts show as expected |   |   |   |
+| Grand total | Calculated accordingly. Shows how much more for the delivery. | <- The same and fitness plan in the bag takes delivery to zero | <- The same | Yes |
+| Secure checkout button on bag page | Takes us to the form | <- The same but the form is prefilled, information changed save in the profile if we choose to  | <- The Same |  |
+| Adjust Bag on checkout page | Takes us back to the bag | <- The Same | <- The Same | Yes |
+| On order page more shopping button | Takes us to the merchandise page | <- The Same | <- The Same | Yes |
+| Create the account link on the check out page | Takes us to the log in page | N/A | N/A | Yes |
+| Log in link on the check out page | Takes us to the log in page | N/A | N/A | Yes |
+| Processing payment | Checks out, payment taken by stripe, webhook created | <- The same and order shows on my orders page | <- The same  | Yes |
+|  |  |  |  |  |
 | Gyms page | Shows all the gyms |   | <- The same |   |
 | Clicking on the gym name | Gym page opens on a new tab |   | <- The same |   |
+|  |  |  |  |  |
 | My Profile | N/A | Accesible through person icon in the top right corner | <- The same | Yes |
 | My info on profile page | N/A | info can be updated | <- The same | Yes |
-| Fitness plan | N/A | Showing our instance plan details if purchased, button to all fitness plans if not | <- The same | Yes |
+| My Fitness plan | N/A | Showing our instance plan details if purchased, button to all fitness plans if not | <- The same | Yes |
 | My orders | N/A | Shows past orders list | <- The same | Yes |
-| Clicking on the order | N/A | Shows us order details with informtions adjusted so it is clear it is a past order | <- The same | Yes |
+| Clicking on the order in my orders | N/A | Shows us order details with informtions adjusted so it is clear it is a past order | <- The same | Yes |
 | Go back to the profile from past order page | N/A | takes us back to the profile | <- The same | Yes |
-| Fitness plan if we have one | N/A | shows in on my fitness plan page in profile | <- The same | Yes |
 |  |  |  |  |  |
 | Product management | Cannot access | Cannot access | Accesible from the navigation and profile for the superuser only | Yes |
 | Links on the management page | N/A | N/A | Go to correct forms/ pages - checked one by one | Yes |
@@ -174,13 +183,10 @@ Thanks to the gray base the page is not too visually overhelming.
 | Cancel editing gym | N/A | N/A | Goes back to all gyms | Yes |
 | Delete gym  | N/A | N/A | Deleted and goes back to gyms | Yes |
 |  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| Toasts showing | When items added, adjusted or removed toasts show as expected | <- The same  | <- The same  | Some of the items shoud get friendly name to show on toasts |
+
+The mechanics of the fitness plan was tested by adjusting view to set earlier start-day. Current date, start_day, day_one.available_from, day_two.available_from, day_three.available_from were printed to the console to check if logic works. Fitness workout was available only on the days for which available_from date was equal or past today's date. Mechanics to check off each day as done after the workout needs to be added although user would have access to the previous workouts either. 
+![Screenshot of the printed statements](media/screenshot.png)
 
 ### Manual testing
 
@@ -192,6 +198,7 @@ Thanks to the gray base the page is not too visually overhelming.
 The management - Management shoud have been put in a separate app.
 Splitting it between different apps creates inconsistencies and makes the other apps less transparent.
 
+Mechanics to check off each day as done after the workout needs to be added. It's lack, however, does not break the mechanics. 
 
 
 ## Credits
