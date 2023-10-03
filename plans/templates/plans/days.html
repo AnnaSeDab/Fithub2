@@ -32,12 +32,12 @@
                         <div class="card-body pb-0">
                             <p class="mb-0 text-black"><strong>{{ day.friendly_name }}</strong></p>
                             <br>
-                            <p class="mb-0 text-black">{{ day.name }}</p>
+                            <p class="mb-0 text-black">{{ day.name }}</p>delete_day
                         </div>
                         <div class="text-center">
                             {% if request.user.is_superuser %}
                             <a class="btn btn-outline-black rounded-0 text-uppercase" href="{% url 'edit_day' day.id %}"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
-                            <a class="btn btn-outline-black rounded-0 text-uppercase" href=""><i class="fa-solid fa-trash"></i> Delete</a>
+                            <a class="btn btn-outline-black rounded-0 text-uppercase" href="{% url 'delete_day' day.id %}"><i class="fa-solid fa-trash"></i> Delete</a>
                             {% endif %}
                         </div>
                     </div>
