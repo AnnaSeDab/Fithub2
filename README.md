@@ -281,9 +281,6 @@ Schema:
 The mechanics of the fitness plan was tested by adjusting view to set earlier start-day. Current date, start_day, day_one.available_from, day_two.available_from, day_three.available_from were printed to the console to check if logic works. Fitness workout was available only on the days for which available_from date was equal or past today's date. Mechanics to check off each day as done after the workout needs to be added although user would have access to the previous workouts either. 
 ![Screenshot of the printed statements](media/screenshot.png)
 
-### Manual testing
-
-
 ### Bugs
 
 When performing CRUD operations toast would show contents of the bag. 
@@ -297,5 +294,269 @@ Splitting it between different apps creates inconsistencies and makes the other 
 Mechanics to check off each day as done after the workout needs to be added. It's lack, however, does not break the mechanics. 
 
 
-## Credits
+## Deployment Steps
 
+Go to ElephantSQL.com and create and account if you don't have one yet
+
+If you already have an account, after logging in
+Set up your plan and copy the database url
+
+Set up Heroku - create or log in to your Heroku account
+Click button New then select new app
+Add the app name and region
+Create the App
+
+In settings add config var ```DATABASE_URL``` and give it value of the your database url from ElephantSQL
+
+In the terminal, install ```dj_database_url``` and ```psycopg2```
+
+Update your requirements.txt file with ```pip freeze > requirements.txt``` command
+
+In the settings.py file put import ```dj_database_url``` underneath the ```import os```
+
+Update DATABASES section to:
+```
+ DATABASES = {
+     'default': dj_database_url.parse('your-database-url-here')
+ }
+ ```
+
+ In the terminal show mirations  ```python3 manage.py showmigrations```
+
+ Migrate ``` python3 manage.py migrate``` and loadcategories remembering to load ones that are foregin keys first
+ eg: ``` python3 manage.py loaddata categories``` then ``` python3 manage.py loaddata products```
+
+ Create a superuser  ```python3 manage.py createsuperuser```
+
+ Change the DATABASES section of the settings.py
+ ```
+  DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     }
+ }
+ ```
+
+In Browser tab on the ElephangSQL page click Table quiries, then pick auth_user and Execute
+
+Change the DATABASES section of the settings.py
+```
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+```
+
+Instal gunicorn with ```pip3 install gunicorn``` and freeze with ```pip freeze > requirements.txt```
+
+Create Procfile and ```web: gunicorn boutique_ado.wsgi:application``` to it
+
+Login to Heroku and add variable ```DISABLE_COLLECT_STATIC=1```
+
+Add host name of the heroku app to settings.py ```ALLOWED_HOSTS = ['8000-annasedab-fithub2-wojmqjnwrn.us2.codeanyapp.com']```
+
+Commit the changes, push to github and deploy on the heroku page
+
+In Heroku settings change Deployment method to Github and pick your app in the connect to github section
+
+Enable automatic deploy
+
+Generate a secret key with Django secret key generator or something similar and add it to
+ config vars in heroku as SECRET_KEY
+
+Change SECRET_KEY in settings.py to ```SECRET_KEY = os.environ.get('SECRET_KEY', '')``` and DEBUG to ```DEBUG = 'DEVELOPMENT' in os.environ```
+
+Then commit and push to github
+
+Create AWS account or log in if you already have one
+
+Fins S3 in AWS services and create new bucket - choose region closest to you and uncheck block all public access
+
+Access buckets Properties tab then in Static website hosting -> Use this bucket to host a website then input index.html and error.html and save
+
+In Permissions tab -> CORS Configuration paste
+```
+[
+{"AllowedHeaders": [
+"Authorization"
+],
+"AllowedMethods": [
+"GET"
+],
+"AllowedOrigins": [
+"*"
+],
+"ExposeHeaders": []
+}
+]
+```
+
+Still in Permissions tab -> Bucket policy -> Policy generator
+Type of policy ```S3 Bucket policy```
+Principal ```*```
+Action ```get_object```
+Copy in ARN from the previous tab
+Click Add statement -> generete policy
+Copy the policy and paste into the Cucket policy editor
+Add ```/*``` at the end of Resource line
+```
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1696273111023",
+    "Statement": [
+        {
+            "Sid": "Stmt1696273098578",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::fithubv2/*"
+        }
+    ]
+}
+```
+
+In Access control list (ACL) section, click edit and enable List for Everyone (public access) then accept the warning box
+
+Find IAM in AWS services
+
+Click Groups then Create new Group and call it what you want as long as it makes sense to you
+
+Click policies then Create Policy
+Go to JSON tab then click import managed policy and import ```AmazonS3FullAccess```
+add your arn and arn/* to resource
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*",
+                "s3-object-lambda:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::fithubv2",
+                "arn:aws:s3:::fithubv2/*"
+            ]
+        }
+    ]
+}
+```
+Click Review policy and give it a name and a description
+Click Create Policy
+
+On Groups page pick the one we created in the previous steps -> Permisions -> Attach policy
+Then select the policy we just created
+
+On Users page click Add user give it a username and click Next then put him in our created group
+
+To download CSV file
+IAM and select 'Users' -> select the correct user -> Security Credentials -> Access Keys - click Create new access key -> 'Application running outside AWS'
+Leave 'Description tag value' blank and click 'Create Access Key'
+Click the 'Download .csv file' 
+
+in terminal intal ```pip3 install boto3``` and ```pip3 install django-storages```
+then freeze the requirements.txt
+
+in settings.py add ``` 'storages', ``` to installed apps 
+then 
+```
+if 'USE_AWS' in os.environ:
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = 'fithubv2'
+    AWS_S3_REGION_NAME = 'eu-west-2'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
+
+Add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to Heroku config vars from our downloaded CVS file
+Add USE_AWS=True
+
+Create custom_storages.py file and put the below code in it
+```
+from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
+
+
+class StaticStorage(S3Boto3Storage):
+    location = settings.STATICFILES_LOCATION
+
+
+class MediaStorage(S3Boto3Storage):
+    location = settings.MEDIAFILES_LOCATION
+```
+
+Add below code within ``` if 'USE_AWS' ``` statement under #Bucket config
+```    
+    # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+
+Freeze the reqirements.txt and commit and push all changes
+
+Static folder should have been added to the AWS bucket
+It can be also added manually 
+
+Add below code within ``` if 'USE_AWS' ``` statement above #Bucket config
+```
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+```
+
+commit and push all changes
+
+In AWS S3 create a new folder called media and upload media files to it
+
+Add Heroku config vars 
+STRIPE_PUBLIC_KEY 
+STRIPE_SECRET_KEY
+Creat new webhook for  https://fithubv2-fe0911af64c8.herokuapp.com/checkout/wh/ and add its STRIPE_WH_SECRET
+
+
+## Cloning the Github repository
+
+Logg in to the Github
+
+Select the repository
+
+Click on the **Code** button located next to the green Gitpod button
+
+Copy link form the HTTPS section
+
+Open terminal
+
+Change the current working directory to the location where you want the cloned directory
+
+Type "git clone" and the previously copier URL
+
+Press **Enter** 
+
+## Forking the Github repository
+
+Logg in to the Github
+
+Select repository you want to fork
+
+Click on the **Fork** button located on the right top section of the page
+
+The copy of oryginal repository is made into your Github account
