@@ -118,13 +118,33 @@ STL - Sent to log in page
 Ideally user would not be sent to 404 so that needs to be fixed.
 Also Merchandise contains all the merchandise including fitness plans which do ot show on merchandise page accesed form the menu, however there is no harm in access but could be fixed.
 
-## Features
 
-### Existing features
+## Features
 
 #### When not logged in
 
+Navigation
+Navigation bar consists of a logo which also serves as a link to the main page, search bar with all the functionality, My account which gives option to register and lig in and bag. Bag can be accesed regardles if the user is logged in ot not.
+User accounts are handled by allauth.
+
+On the top menu
+Merchandise, Fitness plans and Gyms.
+Merchandise can be browsed and added to the bag.
+Fitness plan can be viewed but cannot be added to the bag as it would need a user profile to attach to.
+
+Bag can be adjusted and checkout completed.
+
 #### When logged in
+
+On top of all that guest users can do, logged in users can:
+Purchase a fitness plan, view it and followon the profile page
+Access and adjust their info either on the profile page or dutrng check out
+View their past orders
+As they are logged in they can also log out
+
+#### Superuser
+
+On top of all that logged in regular users can do, superusers can also perform crud operations on merchandise, plans, gyms and categories in the product management page available either through profile or menu.
 
 ### Information Architecture
 
