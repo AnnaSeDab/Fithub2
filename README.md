@@ -193,6 +193,9 @@ The mechanics of the fitness plan was tested by adjusting view to set earlier st
 
 ### Bugs
 
+When performing CRUD operations toast would show contents of the bag. 
+Toast type was chaneged to info and it's headline adjusted.
+
 
 #### Unfixed bugs that are important to fix
 The management - Management shoud have been put in a separate app.
