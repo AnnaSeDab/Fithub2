@@ -80,6 +80,43 @@ Thanks to the gray base the page is not too visually overhelming.
 
 ## Defensive design
 
+Sites which should be available only for the superuser or legged in users are guarded by either or :
+
+```
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+```
+```
+    @login_required
+```
+
+### Adresses Checked
+
+results:
+HP - Sent to home page
+404
+STL - Sent to log in page
+
+| address | user not logged in | not superuser |
+| --- | --- | --- |
+| merchandise/add | STL | HP |
+| gyms/add | STL | HP |
+| plans/days | STL | HP |
+| gyms/edit/1/ | STL | HP |
+| gyms/delete/1/ | STL | HP |
+| plans/edit/1/ | STL | HP |
+| plans/editday/2/ | STL | HP |
+| merchandise/edit/2/ | STL | HP |
+| profile/management/add_plan | 404 | HP |
+| profile/management/add_day | 404 | HP |
+| profile/management/add_fitness_category | 404 | HP |
+| plans/editctegory | 404 | HP |
+| profile | STL | Yes as it should |
+| merchandise | yes | yes |
+
+Ideally user would not be sent to 404 so that needs to be fixed.
+Also Merchandise contains all the merchandise including fitness plans which do ot show on merchandise page accesed form the menu, however there is no harm in access but could be fixed.
 
 ## Features
 
