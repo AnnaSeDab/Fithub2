@@ -56,12 +56,29 @@ Allow users to easily:
 
 ### Wireframes
 
+The wireframes for desktop view were developed first then mobile view and responsiveness was being checked while working on the project.
+
+![Picture of wireframe for desktop devices](media/wireframes.png)
+
+![Picture of wireframe for desktop devices](media/wireframes1.png)
+
+![Picture of wireframe for desktop devices](media/wireframes2.png)
+
 
 ### Fonts
 
+Font awesome was used to generate icons. They are present on many of the buttons.
+Google fonts Josefin Sans was used as a basic font on the page and Edu QLD Beginner for the text over the hero image.
+
+### Colour scheme
+
+Main body of the page is kept in grey colours with few purple elements which harmonise withe the hero image. 
+It creates a soft background to many product images which are not limited to any colur restroctions. 
+Toasts and warnings have appropriate colours eg. text warning the card will be charged. 
+Thanks to the gray base the page is not too visually overhelming. 
+
 
 ## Defensive design
-
 
 
 ## Features
