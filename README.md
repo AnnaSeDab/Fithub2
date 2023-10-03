@@ -2,6 +2,8 @@
 
 # Fithub
 
+![Website on mobile device](media/mobileview.jpg)
+![Website on desktop](media/desktopview.png)
 
 ## UI/UX
 
@@ -195,56 +197,58 @@ Schema:
 |  Can register | Option available when clicking on the peron icon in the header nav. Email sent to the user and can be confirmed.  | Option not avaiable | Option not avaiable | Yes |
 | Registering with email or username that has been already used | Account not created 'email/username already exists' information provided.  | Option not avaiable | Option not avaiable | Yes |
 | Registering with noncompliant password | Adequate feedback provided 'This password is too short. It must contain at least 8 characters. This password is too common. This password is entirely numeric.' | Option not avaiable | Option not avaiable | Yes |
-| Login | User needs to be registered to be able to log in | Option available when clicking on the peron icon in the header nav. | Option available when clicking on the peron icon in the header nav. | Yes but: Success message shows basked content. It could be fixed or left as it reminds the user that they have an unfinished shopping and might prompt them to check out. |
+| Login | User needs to be registered to be able to log in | Option available when clicking on the person icon in the header nav. | Option available when clicking on the peron icon in the header nav. | Yes but: Success message shows basked content. It could be fixed or left as it reminds the user that they have an unfinished shopping and might prompt them to check out. |
 | Log out | Option not avaiable | Option available when clicking on the peron icon in the header nav. Sign out confirmation then requested. Sign out successful. | Option available when clicking on the peron icon in the header nav. Sign out confirmation then requested. Sign out successful. | Yes |
-| Clicking on the Fithub logo | Takes user to the main page checked from fitness plans, merchandise and gym page. |  | <- The same checked also from profile and management page | Yes |
-| Clicking shopping bag icon when it is empty | Shopping bag page with 'Your bag is empty.' message and keep shopping button which takes us to merchangise page |   | <- The same  | Yes |
-| Clicking shopping bag icon when something is in it | Shoping bag page with all the contents as should be |   |  <- The same  |   |
+| Clicking on the Fithub logo | Takes user to the main page checked from fitness plans, merchandise and gym page. | Tested on mobile view where logo is not visible | <- The same checked also from profile and management page | Yes |
+| Clicking shopping bag icon when it is empty | Shopping bag page with 'Your bag is empty.' message and keep shopping button which takes us to merchangise page |  <- The same  | <- The same  | Yes |
+| Clicking shopping bag icon when something is in it | Shoping bag page with all the contents as should be | <- The same   |  <- The same  | Yes  |
 |  |  |  |  |  |
-| Fitness plans | Page shows fitness plans |   | <- The same |   |
-| Clickin on a Fitness plan | Fitness plan page shows |   |  <- The same |   |
-| Clicking Try Now button | Day plan page shows |   | <- The same |   |
-| Clicking to open the youtube video | Opens the youtube video in a new tab |   | <- The same |   |
-| Clicking workout complete | Takes us back to the day plan page |   | <- The same |   |
-| Clicking add to bag when we don't have a plan yet | 'You have to be logged in to purchase a fitness plan' message shows | Adds fitness plan to the bag | <- The same |   |
+| Fitness plans | Page shows fitness plans |  <- The same  | <- The same |  Yes |
+| Clickin on a Fitness plan | Fitness plan page shows | <- The same   |  <- The same | Yes  |
+| Clicking Try Now button | Day plan page shows | <- The same   | <- The same |  Yes |
+| Clicking to open the youtube video | Opens the youtube video in a new tab | <- The same | <- The same |  Yes |
+| Clicking workout complete | Takes us back to the day fitness page |  <- The same | <- The same |  Yes |
+| Clicking add to bag when we don't have a plan yet | 'You have to be logged in to purchase a fitness plan' message shows | Adds fitness plan to the bag | <- The same | Yes |
 | Clicking add to bag when we do have a plan | N/A | Not possible to add a plan | <- The same |  Yes |
 | Clicking add to bag when we do have a plan in a bag already | N/A | Not possible to add a plan | <- The same |  Yes |
-| Fitness plan in the bag | N/A | Only adjustment button showing is remove as we cannot have more than one fitness plan at the time | <- The same |  |
+| Fitness plan in the bag | N/A | Only adjustment button showing is remove as we cannot have more than one fitness plan at the time | <- The same | Yes |
 | Remove fitness plan from the bag | N/A | Fitness plan gets removed. We go tho the merchandise page | <- The same | BUG ideally we would got to the plans page |
 |  |  |  |  |  |
-| All Merchandise | We go to the merchandise page |   | <- The same |   |
-| Workout equipment | We go to the merchandise page with Workout equipment showing |   | <- The same |   |
-| Activeware | We go to the merchandise page with Activeware showing |   | <- The same |   |
-| Click see all products | Merchandise page shows both workout equiplent and activeware |   |  <- The same |   |
-| Click Activeware under a product price | Merchandise page shows activeware |   | <- The same |   |
-| Click Workout equipment under a product price | Merchandise page shows workout equiplent |   | <- The same |   |
-| Sort by various paramters |Products are mostly srted accordingly. No rating shows as the highest rating |   | <- The same | sorting BUG could be fixed easy to spot with few products but might be annoying with a lot of unrated products pushing to the front |
-| Click on a product | Product page opens |   |  <- The same |   |
-| Adjust quantity by buttons, arrows or input| Quantity adjusted |   |  <- The same |   |
-| Attempt to go below 0 with buttons | Quantity does not go below zero |   |  <- The same |   |
-| Attempt to go over 99 with buttons | Quantity does not go over unless adjusted by input |   | <- The same  |   |
-| Add product with quantity over 99 by manual input | 'Please select value that is no more than 99' message appears and item not added to the bag |   | <- The same  |   |
-| Add product with quantity below 0 by manual input | 'Please select value that is no less than 0' message appears and item not added to the bag |   | <- The same  |   |
-| Click keep shopping on the item page| We go back to the merchandise page and nothing is added to the basket |   | <- The same |   |
-| Item size showing and can be picked | Only for the items with sizes |   |  <- The same |   |
-| Add item to the bag | Item added to the bag with correct size and quantity. Success toast is showing with picture and item description. Button to checkout showing |   | <- The same |   |
-| Click checkout button from the toast | Going to the shopping bag. It is not check out yet but this way we can confirm on a full screenthat all is ok with our order |   | <- The same |   |
-| Click product category on the bag page | We go back to the merchandise page with only relevant category showing |   | <- The same |   |
-| In bag adjust item quantity by buttons, arrows or input| Quantity adjusted |   |   |   |
-| In bag attempt to go below 0 | Quantity can go below if input manually. Item gets removed. Could be guarded but does not break the page | <- The same  |  <- The same | Could be better but does not break the page. Will be fixed in the future |
+| All Merchandise | We go to the merchandise page | <- The same  | <- The same |  Yes |
+| Workout equipment | We go to the merchandise page with Workout equipment showing | <- The same  | <- The same | Yes  |
+| Activeware | We go to the merchandise page with Activeware showing |  <- The same | <- The same |  Yes |
+| Click see all products | Merchandise page shows both workout equiplent and activeware |  <- The same |  <- The same | Yes  |
+| Click Activeware under a product price | Merchandise page shows activeware |  <- The same | <- The same | Yes  |
+| Click Workout equipment under a product price | Merchandise page shows workout equiplent |  <- The same | <- The same |  Yes |
+| Sort by various paramters |Products are mostly srted accordingly. No rating shows as the highest rating |  <- The same | <- The same | sorting BUG could be fixed easy to spot with few products but might be annoying with a lot of unrated products pushing to the front |
+| Click on a product | Product page opens |  <- The same |  <- The same | Yes  |
+| Adjust quantity by buttons, arrows or input| Quantity adjusted |  <- The same |  <- The same | Yes  |
+| Attempt to go below 0 with buttons | Quantity does not go below zero |  <- The same |  <- The same | Yes  |
+| Attempt to go over 99 with buttons | Quantity does not go over unless adjusted by input | <- The same  | <- The same  |  Yes |
+| Add product with quantity over 99 by manual input | 'Please select value that is no more than 99' message appears and item not added to the bag | <- The same  | <- The same  | Yes |
+| Add product with quantity below 0 by manual input | 'Please select value that is no less than 0' message appears and item not added to the bag |  <- The same | <- The same  | Yes  |
+| Click keep shopping on the item page| We go back to the merchandise page and nothing is added to the basket |  <- The same | <- The same |  Yes |
+| Item size showing and can be picked | Only for the items with sizes | <- The same  |  <- The same |  Yes |
+| Add item to the bag | Item added to the bag with correct(picked by us) size and quantity. Success toast is showing with picture and item description. Button to checkout showing | <- The same  | <- The same | Yes  |
+| Add item to the bag when one is already in | Item added to the bag with correct size, quantity adjusted. Success toast is showing with picture and item description. Button to checkout showing | <- The same  | <- The same | Yes  |
+| Add item to the bag when one is already in vut different size| Item added to the bag with correct sizes and quantities. Success toast is showing with picture and item description. Button to checkout showing | <- The same  | <- The same | Yes  |
+| Click checkout button from the toast | Going to the shopping bag. It is not check page out yet but this way we can confirm on a full screenthat all is ok with our order | <- The same  | <- The same |  Yes |
+| Click product category on the product page | We go back to the merchandise page with only relevant category showing |  <- The same | <- The same |  Yes |
+| In bag adjust item quantity by buttons, arrows or input| Quantity adjusted |  <- The same | <- The same  | Yes  |
+| In bag attempt to go below 0 | Quantity can go below if input manually. Item gets removed. Could be guarded but does not break the page and king of makes the sense | <- The same  |  <- The same | Could be better but does not break the page. Will be fixed in the future |
 | In bag attempt to go over 99 | Quantity can go over if input manually | <- The same  |  <- The same | BUG, needs to be fixed |
 | In bag remove item | Item removed |  <- The same |  <- The same | Yes  |
-| Subtotal of items | Calculated acordingly and showing | <- The same | <- The same |  |
+| Subtotal of items | Calculated acordingly and showing | <- The same | <- The same | Yes |
 | Grand total | Calculated accordingly. Shows how much more for the delivery. | <- The same and fitness plan in the bag takes delivery to zero | <- The same | Yes |
-| Secure checkout button on bag page | Takes us to the form | <- The same but the form is prefilled, information changed save in the profile if we choose to  | <- The Same |  |
+| Secure checkout button on bag page | Takes us to the form | <- The same but the form is prefilled, information changed save in the profile if we choose to  | <- The Same | Yes |
 | Adjust Bag on checkout page | Takes us back to the bag | <- The Same | <- The Same | Yes |
 | On order page more shopping button | Takes us to the merchandise page | <- The Same | <- The Same | Yes |
 | Create the account link on the check out page | Takes us to the log in page | N/A | N/A | Yes |
 | Log in link on the check out page | Takes us to the log in page | N/A | N/A | Yes |
 | Processing payment | Checks out, payment taken by stripe, webhook created | <- The same and order shows on my orders page | <- The same  | Yes |
 |  |  |  |  |  |
-| Gyms page | Shows all the gyms |   | <- The same |   |
-| Clicking on the gym name | Gym page opens on a new tab |   | <- The same |   |
+| Gyms page | Shows all the gyms | <- The same  | <- The same | Yes  |
+| Clicking on the gym name | Gym page opens on a new tab |  <- The same | <- The same | Yes  |
 |  |  |  |  |  |
 | My Profile | N/A | Accesible through person icon in the top right corner | <- The same | Yes |
 | My info on profile page | N/A | info can be updated | <- The same | Yes |
@@ -279,20 +283,29 @@ Schema:
 | Toasts showing | When items added, adjusted or removed toasts show as expected | <- The same  | <- The same  | Some of the items shoud get friendly name to show on toasts |
 
 The mechanics of the fitness plan was tested by adjusting view to set earlier start-day. Current date, start_day, day_one.available_from, day_two.available_from, day_three.available_from were printed to the console to check if logic works. Fitness workout was available only on the days for which available_from date was equal or past today's date. Mechanics to check off each day as done after the workout needs to be added although user would have access to the previous workouts either. 
-![Screenshot of the printed statements](media/screenshot.png)
+
+![Screenshot of the printed statements](media/Screenshot.png)
 
 ### Bugs
+
+
+#### Solved
 
 When performing CRUD operations toast would show contents of the bag. 
 Toast type was chaneged to info and it's headline adjusted.
 
-
 #### Unfixed bugs that are important to fix
+
 The management - Management shoud have been put in a separate app.
 Splitting it between different apps creates inconsistencies and makes the other apps less transparent.
 
 Mechanics to check off each day as done after the workout needs to be added. It's lack, however, does not break the mechanics. 
 
+Unregistered user is sometimes being ssent to page 404 when trying to access pages they don't have access to. Ideally needs to be redirected somewhere instead.
+
+Product incrementation buttons on mobile view are stacked. Media quiery needed.
+
+When coming onto page through facebook link delivery banner is slightly covered. It does not happen on a 'regular browser' mobile view. Media quiery needed.
 
 ## Deployment Steps
 
